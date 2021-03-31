@@ -41,15 +41,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-
-import {} from '@/api/api';
+import {
+	defineComponent,
+	getCurrentInstance,
+	ComponentInternalInstance,
+} from 'vue';
 
 export default defineComponent({
-	setup() {
+	async setup() {
+		const proxy = (getCurrentInstance() as ComponentInternalInstance).proxy;
 
+		const res = await proxy?.$api.fetchUserInfo('xxx');
 
-
+		console.log('res :>> ', res);
 	},
 });
 </script>
