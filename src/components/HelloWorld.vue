@@ -48,13 +48,13 @@ import {
 } from 'vue';
 
 export default defineComponent({
-	async setup() {
-		const proxy = (getCurrentInstance() as ComponentInternalInstance).proxy;
+	// async setup() {
+	// 	const proxy = (getCurrentInstance() as ComponentInternalInstance).proxy;
 
-		const res = await proxy?.$api.fetchUserInfo('xxx');
+	// 	const res = await proxy?.$api.fetchUserInfo('xxx');
 
-		console.log('res :>> ', res);
-	},
+	// 	console.log('res :>> ', res);
+	// },
 });
 </script>
 

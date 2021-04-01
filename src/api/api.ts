@@ -1,3 +1,5 @@
+import * as APITYPE from '@/@types/api-types';
+
 export default {
 	fetchUserInfo(
 		userId: string
@@ -16,4 +18,25 @@ export default {
 			}, 2000);
 		});
 	},
+	/**
+	 * 获取 Todo 列表
+	 * @returns
+	 */
+	getTodoList(): Promise<APITYPE.ITodoItem[]> {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				const statusList: APITYPE.ITodoItemStatus[] = ['done', 'normal']
+				const result: APITYPE.ITodoItem[] = new Array(6).fill(0).map((v, i) => {
+					return {
+						_id: `${i}`,
+						content: `待办事项${i}`,
+						status: statusList[~~(Math.random() * statusList.length)],
+						visible: true
+					}
+				})
+
+				resolve(result)
+			}, 2000);
+		})
+	}
 };
