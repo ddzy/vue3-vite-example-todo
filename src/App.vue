@@ -1,29 +1,41 @@
 <template>
-  111
-	<Suspense>
-    <Todo />
-  </Suspense>
+	<div class="app-container">
+		<router-view></router-view>
+	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Todo from './components/Todo/index.vue';
+import {
+	ComponentPublicInstance,
+	defineComponent,
+	getCurrentInstance,
+	watch,
+} from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import routerHandle from '@/router/router-handle';
 
 export default defineComponent({
-	name: 'App',
-	components: {
-		Todo,
+	setup() {
+		const app = getCurrentInstance()?.proxy;
+		const route = useRoute();
+		const router = useRouter();
+
+		watch(
+			() => route.name,
+			() => {
+				routerHandle();
+			},
+			{
+				immediate: true,
+				deep: true,
+			}
+		);
+
+		return {
+			route,
+		};
 	},
 });
 </script>
 
-<style>
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-}
-</style>
+<style lang="scss" scoped></style>

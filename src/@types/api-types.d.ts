@@ -5,3 +5,7 @@ export interface ITodoItem {
 	visible: boolean
 }
 export type ITodoItemStatus = 'done' | 'normal'
+export interface IMenuItem {
+	action: string
+	permissions: string[]
+}
